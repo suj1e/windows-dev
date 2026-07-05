@@ -2,7 +2,7 @@
 
 Windows 开发环境配置（PowerShell 7 + WezTerm + mise + starship）。
 
-和 macOS 工具链全面对齐：eza/bat/fd/rg/delta/zoxide/fzf/lazygit/just/jq/btop/dust/procs/tldr/yq/direnv/lazydocker/hyperfine/sd/xh。
+和 macOS 工具链全面对齐：eza/bat/fd/rg/delta/zoxide/fzf/lazygit/just/jq/btop/dust/procs/tldr/yq/direnv/lazydocker/hyperfine/sd/xh/pnpm/maven/gradle。
 
 ## 快速开始
 
