@@ -37,8 +37,10 @@ windows-dev/
 │   │   └── config.toml                # 版本管理
 │   ├── git/
 │   │   └── gitconfig                  # Git 配置
-│   └── ssh/
-│       └── config                     # SSH 配置
+│   ├── ssh/
+│   │   └── config                     # SSH 配置
+│   └── claude/
+│       └── settings.json              # Claude Code 配置
 └── docs/
     └── CLI-Tools-Reference-Windows.md # 完整工具参考
 ```
@@ -85,6 +87,7 @@ MIT
 | npm/pnpm | ~/.npmrc | 阿里云 npm 私有 |
 | Maven | ~/.m2/settings.xml | 阿里云 Maven 私有 |
 | Gradle | ~/.gradle/gradle.properties | 阿里云 Maven 私有 |
+| Claude Code | ~/.zprofile | ANTHROPIC_AUTH_TOKEN（环境变量） |
 
 ## 加密与备份
 

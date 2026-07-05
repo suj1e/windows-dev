@@ -6,6 +6,16 @@ Desktop.ini
 *.ps1
 !scripts/install.ps1
 
+# Claude Code 运行时数据
+.claude/history.jsonl
+.claude/cache/
+.claude/sessions/
+.claude/telemetry/
+.claude/backups/
+.claude/plugins/
+.claude/shell-snapshots/
+.claude/projects/
+
 # 日志
 *.log
 *.tmp

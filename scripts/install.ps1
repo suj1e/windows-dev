@@ -142,10 +142,10 @@ if (-not $SkipConfig) {
 }
 
 # ============================================
-# 4. 配置 Git、SSH、PowerShell Profile
+# 4. 配置 Git、SSH、PowerShell Profile、Claude
 # ============================================
 if (-not $SkipConfig) {
-    Write-Host "[4/4] 配置 Git、SSH、PowerShell Profile..." -ForegroundColor Yellow
+    Write-Host "[4/4] 配置 Git、SSH、PowerShell Profile、Claude..." -ForegroundColor Yellow
 
     # Git 配置
     $gitConfigSource = "$PSScriptRoot\..\config\git\gitconfig"
@@ -164,7 +164,6 @@ if (-not $SkipConfig) {
     if (-not (Test-Path $sshConfigTarget)) {
         if (-not (Test-Path $sshDir)) {
             New-Item -ItemType Directory -Path $sshDir -Force | Out-Null
-            # 设置 .ssh 目录权限（仅当前用户可读写）
             $acl = Get-Acl $sshDir
             $acl.SetAccessRuleProtection($true, $false)
             $rule = New-Object System.Security.AccessControl.FileSystemAccessRule("$env:USERNAME", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
@@ -189,6 +188,19 @@ if (-not $SkipConfig) {
         Write-Host "  ✓ PowerShell Profile 已复制" -ForegroundColor Green
     } else {
         Write-Host "  ℹ️  PowerShell Profile 已存在，跳过" -ForegroundColor Gray
+    }
+
+    # Claude Code 配置
+    $claudeConfigSource = "$PSScriptRoot\..\config\claude\settings.json"
+    $claudeConfigTarget = "$env:USERPROFILE\.claude\settings.json"
+    if (-not (Test-Path $claudeConfigTarget)) {
+        if (-not (Test-Path "$env:USERPROFILE\.claude")) {
+            New-Item -ItemType Directory -Path "$env:USERPROFILE\.claude" -Force | Out-Null
+        }
+        Copy-Item $claudeConfigSource -Destination $claudeConfigTarget -Force
+        Write-Host "  ✓ Claude settings.json 已复制" -ForegroundColor Green
+    } else {
+        Write-Host "  ℹ️  Claude settings.json 已存在，跳过" -ForegroundColor Gray
     }
 
     Write-Host "`n✓ 配置复制完成`n" -ForegroundColor Green
