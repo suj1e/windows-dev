@@ -83,3 +83,7 @@ MIT
 | npm/pnpm | ~/.npmrc | 阿里云 npm 私有 |
 | Maven | ~/.m2/settings.xml | 阿里云 Maven 私有 |
 | Gradle | ~/.gradle/gradle.properties | 阿里云 Maven 私有 |
+
+## 加密与备份
+
+敏感文件加密和 age 私钥备份见 [dotfiles](https://github.com/suj1e/dotfiles) 仓库。
