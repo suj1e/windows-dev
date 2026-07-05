@@ -10,7 +10,7 @@ Windows 开发环境配置（PowerShell 7 + WezTerm + mise + starship）。
 # 1. 克隆仓库
 git clone https://github.com/suj1e/windows-dev.git ~/windows-dev
 
-# 2. 运行安装脚本
+# 2. 运行安装脚本（自动安装工具 + 配置）
 powershell -ExecutionPolicy Bypass -File ~/windows-dev/scripts/install.ps1
 
 # 3. 手动配置 WezTerm
@@ -35,8 +35,10 @@ windows-dev/
 │   │   └── starship.toml              # starship Prompt
 │   ├── mise/
 │   │   └── config.toml                # 版本管理
-│   └── git/
-│       └── gitconfig                  # Git 配置
+│   ├── git/
+│   │   └── gitconfig                  # Git 配置
+│   └── ssh/
+│       └── config                     # SSH 配置
 └── docs/
     └── CLI-Tools-Reference-Windows.md # 完整工具参考
 ```

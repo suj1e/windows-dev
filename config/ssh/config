@@ -1,0 +1,22 @@
+# SSH 配置 — Windows
+# 路径: ~/.ssh/config
+
+# 默认配置
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    AddKeysToAgent yes
+    IdentitiesOnly yes
+
+# 示例：GitHub
+# Host github.com
+#     HostName github.com
+#     User git
+#     IdentityFile ~/.ssh/id_ed25519
+
+# 示例：服务器
+# Host myserver
+#     HostName 192.168.1.100
+#     User ubuntu
+#     IdentityFile ~/.ssh/id_ed25519
+#     Port 22

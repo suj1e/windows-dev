@@ -16,7 +16,7 @@ Write-Host "PowerShell: $($PSVersionTable.PSVersion)`n" -ForegroundColor Gray
 # 1. 安装 CLI 工具
 # ============================================
 if (-not $SkipTools) {
-    Write-Host "[1/3] 安装 CLI 工具..." -ForegroundColor Yellow
+    Write-Host "[1/4] 安装 CLI 工具..." -ForegroundColor Yellow
 
     $tools = @(
         # 终端 / Shell
@@ -89,7 +89,7 @@ if (-not $SkipTools) {
 # 2. 配置 mise
 # ============================================
 if (-not $SkipConfig) {
-    Write-Host "[2/3] 配置 mise..." -ForegroundColor Yellow
+    Write-Host "[2/4] 配置 mise..." -ForegroundColor Yellow
 
     $miseConfigDir = "$env:USERPROFILE\.config\mise"
     $miseConfigFile = "$miseConfigDir\config.toml"
@@ -125,7 +125,7 @@ python = "3.13"
 # 3. 配置 starship
 # ============================================
 if (-not $SkipConfig) {
-    Write-Host "[3/3] 配置 starship..." -ForegroundColor Yellow
+    Write-Host "[3/4] 配置 starship..." -ForegroundColor Yellow
 
     $starshipConfigDir = "$env:USERPROFILE\.config\starship"
     $starshipConfigFile = "$starshipConfigDir\starship.toml"
@@ -142,11 +142,63 @@ if (-not $SkipConfig) {
 }
 
 # ============================================
+# 4. 配置 Git、SSH、PowerShell Profile
+# ============================================
+if (-not $SkipConfig) {
+    Write-Host "[4/4] 配置 Git、SSH、PowerShell Profile..." -ForegroundColor Yellow
+
+    # Git 配置
+    $gitConfigSource = "$PSScriptRoot\..\config\git\gitconfig"
+    $gitConfigTarget = "$env:USERPROFILE\.gitconfig"
+    if (-not (Test-Path $gitConfigTarget)) {
+        Copy-Item $gitConfigSource -Destination $gitConfigTarget -Force
+        Write-Host "  ✓ .gitconfig 已复制" -ForegroundColor Green
+    } else {
+        Write-Host "  ℹ️  .gitconfig 已存在，跳过" -ForegroundColor Gray
+    }
+
+    # SSH 配置
+    $sshDir = "$env:USERPROFILE\.ssh"
+    $sshConfigSource = "$PSScriptRoot\..\config\ssh\config"
+    $sshConfigTarget = "$sshDir\config"
+    if (-not (Test-Path $sshConfigTarget)) {
+        if (-not (Test-Path $sshDir)) {
+            New-Item -ItemType Directory -Path $sshDir -Force | Out-Null
+            # 设置 .ssh 目录权限（仅当前用户可读写）
+            $acl = Get-Acl $sshDir
+            $acl.SetAccessRuleProtection($true, $false)
+            $rule = New-Object System.Security.AccessControl.FileSystemAccessRule("$env:USERNAME", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
+            $acl.AddAccessRule($rule)
+            Set-Acl $sshDir $acl
+        }
+        Copy-Item $sshConfigSource -Destination $sshConfigTarget -Force
+        Write-Host "  ✓ .ssh/config 已复制" -ForegroundColor Green
+    } else {
+        Write-Host "  ℹ️  .ssh/config 已存在，跳过" -ForegroundColor Gray
+    }
+
+    # PowerShell Profile
+    $profileDir = Split-Path -Parent $PROFILE.CurrentUserAllHosts
+    $profileSource = "$PSScriptRoot\..\config\powershell\Microsoft.PowerShell_profile.ps1"
+    $profileTarget = $PROFILE.CurrentUserAllHosts
+    if (-not (Test-Path $profileTarget)) {
+        if (-not (Test-Path $profileDir)) {
+            New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
+        }
+        Copy-Item $profileSource -Destination $profileTarget -Force
+        Write-Host "  ✓ PowerShell Profile 已复制" -ForegroundColor Green
+    } else {
+        Write-Host "  ℹ️  PowerShell Profile 已存在，跳过" -ForegroundColor Gray
+    }
+
+    Write-Host "`n✓ 配置复制完成`n" -ForegroundColor Green
+}
+
+# ============================================
 # 完成
 # ============================================
 Write-Host "=== 安装完成 ===" -ForegroundColor Cyan
 Write-Host "`n下一步:" -ForegroundColor Yellow
-Write-Host "  1. 重启 PowerShell 或运行 ````. `$PROFILE```` 加载配置"
+Write-Host "  1. 重启 PowerShell 或运行 `. `$PROFILE` 加载配置"
 Write-Host "  2. 安装 WezTerm: https://wezfurlong.org/wezterm/installation.html"
-Write-Host "  3. 复制 wezterm.lua 到 WezTerm 配置目录"
-Write-Host "  4. 运行 ````mise install```` 安装所有语言版本`n"
+Write-Host "  3. 运行 `mise install` 安装所有语言版本`n"
