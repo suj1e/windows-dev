@@ -1,0 +1,83 @@
+# Starship 配置 — Windows / WezTerm
+# 文档: https://starship.rs/config/
+
+# 整体格式
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$rust\
+$java\
+$cmd_duration\
+$line_break\
+$character"""
+
+# 命令耗时（≥2 秒显示）
+[cmd_duration]
+min_time = 2000
+format = " ⏱ $duration "
+show_milliseconds = false
+
+# 目录（最多 3 层；git 仓库内截断到仓库根）
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+# OS 图标
+[os]
+disabled = false
+style = "white"
+format = "[$symbol]($style) "
+
+[os.symbols]
+Windows = ""
+
+# Git 分支
+[git_branch]
+symbol = " "
+style = "bold purple"
+format = "[$symbol$branch]($style) "
+
+# Git 状态
+[git_status]
+style = "bold red"
+format = '([$all_status$ahead_behind]($style) )'
+modified = "!"
+staged = "+"
+untracked = "?"
+renamed = "»"
+deleted = "✕"
+
+# Python
+[python]
+symbol = "🐍 "
+style = "bold yellow"
+format = "[$symbol$version]($style) "
+
+# Node.js
+[nodejs]
+symbol = "⬢ "
+style = "bold green"
+format = "[$symbol$version]($style) "
+
+# Rust
+[rust]
+symbol = "🦀 "
+style = "bold red"
+format = "[$symbol$version]($style) "
+
+# Java
+[java]
+symbol = "☕ "
+style = "bold red"
+format = "[$symbol$version]($style) "
+
+# 命令行
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"

@@ -1,0 +1,11 @@
+# Windows
+Thumbs.db
+Desktop.ini
+
+# PowerShell
+*.ps1
+!scripts/install.ps1
+
+# 日志
+*.log
+*.tmp
