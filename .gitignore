@@ -5,6 +5,8 @@ Desktop.ini
 # PowerShell
 *.ps1
 !scripts/install.ps1
+!scripts/cleanup.ps1
+!config/powershell/*.ps1
 
 # Claude Code 运行时数据
 .claude/history.jsonl

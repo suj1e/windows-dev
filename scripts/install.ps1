@@ -44,7 +44,7 @@ if (-not $SkipTools) {
         "jqlang.jq",
         "casey.just",
         "tstack.lnav",
-        "aristocratos.btop",
+        "aristocratos.btop4win",
         "bootandy.dust",
         "dalance.procs",
         "sharkdp.hyperfine",
@@ -59,14 +59,14 @@ if (-not $SkipTools) {
         # Docker
         "JesseDuffield.lazydocker",
 
+        # Python（winget 安装，因为 mise 下载 GitHub 资源超时）
+        "Python.Python.3.13",
+
         # 编辑器
         "Neovim.Neovim",
 
         # 终端复用
-        "zellij-org.zellij",
-
-        # GitHub CLI
-        "GitHub.cli",
+        "Zellij.Zellij",
 
         # 字体
         "JetBrains.JetBrainsMono.NerdFont"
@@ -98,11 +98,10 @@ if (-not $SkipConfig) {
         New-Item -ItemType Directory -Path $miseConfigDir -Force | Out-Null
         @"
 [tools]
-bun = "latest"
-go = "1.24"
-java = "21"
+java = "corretto-8.492.09.2"
+maven = "3.8.8"
 node = "22"
-python = "3.13"
+pnpm = "latest"
 "@ | Out-File -FilePath $miseConfigFile -Encoding utf8
         Write-Host "  ✓ mise 配置已创建" -ForegroundColor Green
     } else {
