@@ -96,7 +96,7 @@ if (-not $SkipConfig) {
         @"
 [tools]
 java = "corretto-8.492.09.2"
-maven = "3.8.8"
+maven = "3.6.3"
 node = "20"
 python = "3.13"
 "@ | Out-File -FilePath $miseConfigFile -Encoding utf8
