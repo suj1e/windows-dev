@@ -100,7 +100,7 @@ if (-not $SkipConfig) {
 [tools]
 java = "corretto-8.492.09.2"
 maven = "3.8.8"
-node = "22"
+node = "20"
 pnpm = "latest"
 "@ | Out-File -FilePath $miseConfigFile -Encoding utf8
         Write-Host "  ✓ mise 配置已创建" -ForegroundColor Green
