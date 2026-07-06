@@ -2,7 +2,7 @@
 
 Windows 开发环境配置（PowerShell 7 + WezTerm + mise + starship）。
 
-和 macOS 工具链全面对齐：eza/bat/fd/rg/delta/zoxide/fzf/lazygit/just/jq/btop/dust/procs/tldr/yq/direnv/lazydocker/hyperfine/sd/xh/pnpm/maven/gradle。
+和 macOS 工具链全面对齐：eza/bat/fd/rg/delta/zoxide/fzf/lazygit/just/jq/btop/dust/procs/tldr/yq/direnv/lazydocker/hyperfine/sd/xh/maven/gradle。
 
 ## 快速开始
 
@@ -76,7 +76,7 @@ MIT
 
 | 工具 | 配置 | 镜像源 |
 |------|------|--------|
-| npm/pnpm | ~/.npmrc | 阿里云 npm |
+| npm | ~/.npmrc | 阿里云 npm |
 | Maven | ~/.m2/settings.xml | 阿里云 Maven |
 | Gradle | ~/.gradle/gradle.properties | 阿里云 Maven |
 
@@ -84,7 +84,7 @@ MIT
 
 | 工具 | 配置 | 仓库 |
 |------|------|------|
-| npm/pnpm | ~/.npmrc | 阿里云 npm 私有 |
+| npm | ~/.npmrc | 阿里云 npm 私有 |
 | Maven | ~/.m2/settings.xml | 阿里云 Maven 私有 |
 | Gradle | ~/.gradle/gradle.properties | 阿里云 Maven 私有 |
 | Claude Code | ~/.zprofile | ANTHROPIC_AUTH_TOKEN（环境变量） |
