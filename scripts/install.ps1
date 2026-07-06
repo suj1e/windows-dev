@@ -59,9 +59,6 @@ if (-not $SkipTools) {
         # Docker
         "JesseDuffield.lazydocker",
 
-        # Python（winget 安装，因为 mise 下载 GitHub 资源超时）
-        "Python.Python.3.13",
-
         # 编辑器
         "Neovim.Neovim",
 
@@ -101,7 +98,7 @@ if (-not $SkipConfig) {
 java = "corretto-8.492.09.2"
 maven = "3.8.8"
 node = "20"
-pnpm = "latest"
+python = "3.13"
 "@ | Out-File -FilePath $miseConfigFile -Encoding utf8
         Write-Host "  ✓ mise 配置已创建" -ForegroundColor Green
     } else {

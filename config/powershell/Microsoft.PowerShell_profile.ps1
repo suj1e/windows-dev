@@ -19,6 +19,11 @@ if (Get-Command direnv -ErrorAction SilentlyContinue) {
     Invoke-Expression (&direnv hook powershell | Out-String)
 }
 
+# 启用 corepack（管理 pnpm/yarn）
+if (Get-Command corepack -ErrorAction SilentlyContinue) {
+    corepack enable | Out-Null
+}
+
 # 设置编辑器和分页器
 $env:EDITOR = "nvim"
 $env:PAGER = "bat"
